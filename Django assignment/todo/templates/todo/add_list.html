@@ -1,0 +1,10 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="todo_title">Title</label>
+    <input type="text" id="todo_title" name="todo_title">
+    <label for="task_detail">Description</label>
+    <input type="text" id="task_detail" name="task_detail">
+    <label for="completion_date">Completion Date:</label>
+    <input type="date" id="completion_date" name="completion_date">
+    <button type="submit" class="btn button-all" style="margin-left: 32%;margin-top: 7%;">Submit</button>
+  </form>

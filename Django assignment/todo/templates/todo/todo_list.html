@@ -1,0 +1,98 @@
+        
+{% load static %}
+<head>
+
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        
+        <h1 style="padding-top: 30px;"><a href="/">Todo List App</a></h1>
+        <a href="{% url 'add_todo' %}"><button type="button" class="btn btn-info" style="margin-left: 550px;">Add task</button></a>
+        <br>
+    
+    <div class="list-group">
+       
+        <h3>Remaining tasks</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for t in todos %}
+        {% if not t.done_status %}
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="{%static 'todo/abs.jpg' %}" class="card-img-top" alt="..." height="150px">
+                <div class="card-body">
+                  <h5 class="card-title">{{ t.todo_title }}</h5>
+                  <p class="card-text">{{ t.task_detail|linebreaksbr }}</p>
+                </div>
+                <div class="card-footer">
+                  <small>Completion date: {{ t.completion_date }}</small>
+                 <br>
+                  <small class="text-muted">Done status: {{t.done_status}}</small><br><br>
+                  <a href="{% url 'viewtodo' t.id%}"><button type="button" class="btn btn-info" style="float:left">Edit</button></a>
+                  <form method="POST" action="{% url 'deletetodo' t.id %}">
+                    {% csrf_token %}
+                
+                    <button type="submit" class="btn btn-danger" style="float:right">Delete</button>
+                </form>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            <br>
+            <h3>Completed tasks</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for t in todos %}
+            {% if t.done_status %}
+        
+           
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'todo/done.jpg' %}" class="card-img-top" alt="..." height="150px">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ t.todo_title }}</h5>
+                    <p class="card-text">{{ t.task_detail|linebreaksbr }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <small>Completion date: {{ t.completion_date }}</small>
+                    <br>
+                    <small class="text-muted">Done status: {{t.done_status}}</small><br><br>
+                    <a href="{% url 'viewtodo' t.id %}"><button type="button" class="btn btn-info" style="float:left;">Edit</button></a>
+                    <a href="{% url 'deletetodo' t.id%}"><button type="button" class="btn btn-danger" style="float:right">Delete</button></a>
+                </div>
+                </div>
+              </div>
+            
+            {% endif %}
+            {% endfor %}
+            </div>
+            
+            
+        <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ t.todo_title }}</h5>
+              <small><time>Completion date: {{ t.completion_date }}</time></small>
+            </div>
+            <p class="mb-1">{{ t.task_detail|linebreaksbr }}</p>
+            <small>Done status: {{t.done_status}}</small>
+            <a href="{% url 'add_todo' %}"><button type="button" class="btn btn-info">Delete Task</button></a>
+          </a> -->
+         
+        
+      
+  
+      </div>
+      <br><br>
+
+      </div>
+
+ 
+     
+</body>
+
+  

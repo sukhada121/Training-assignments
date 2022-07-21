@@ -15,16 +15,14 @@ def add_todo(request):
     if request.method=='GET':
           return render(request,'todo/add_list.html',{'form':TodoForm()})
     else:
-        # try:
         form=TodoForm(request.POST)
         tod=form.save(commit=False)
         
         tod.save()
         return redirect('todo_list')
-        # except ValueError:
-        #      return render(request,'register/genre.html',{'form':GenreForm(),'error':'Enter details appropriately!'})
        
-def viewtodo(request,todo_pk):
+       
+def updatetodo(request,todo_pk):
     todo=get_object_or_404(Todo, pk=todo_pk)
     if request.method=='GET':
         form=UpdTodoForm(instance=todo)

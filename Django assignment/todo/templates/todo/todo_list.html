@@ -41,7 +41,7 @@
                   <button type="submit" class="btn btn-success" style="float: left;">Mark as completed</button>
                   
                   </form><br><br>
-                  <a href="{% url 'viewtodo' t.id%}"><button type="button" class="btn btn-info" style="float:left">Edit</button></a>
+                  <a href="{% url 'updatetodo' t.id%}"><button type="button" class="btn btn-info" style="float:left">Edit</button></a>
                   <form method="POST" action="{% url 'deletetodo' t.id %}">
                     {% csrf_token %}
                 
@@ -72,7 +72,7 @@
                     <small>Completion date: {{ t.completion_date }}</small>
                     <br>
                     <small class="text-muted">Done status: {{t.done_status}}</small><br><br>
-                    <a href="{% url 'viewtodo' t.id %}"><button type="button" class="btn btn-info" style="float:left;">Edit</button></a>
+                    <a href="{% url 'updatetodo' t.id %}"><button type="button" class="btn btn-info" style="float:left;">Edit</button></a>
                     <form method="POST" action="{% url 'deletetodo' t.id %}">
                       {% csrf_token %}
                   

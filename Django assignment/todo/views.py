@@ -43,3 +43,11 @@ def deletetodo(request,todo_pk):
          todo.completion_date=timezone.now()
          todo.delete()
          return redirect('todo_list')
+
+def completetodo(request,todo_pk):
+     todo=get_object_or_404(Todo, pk=todo_pk)
+     if request.method=='POST':
+         todo.completion_date=timezone.now()
+         todo.done_status=True;
+         todo.save()
+         return redirect('todo_list')

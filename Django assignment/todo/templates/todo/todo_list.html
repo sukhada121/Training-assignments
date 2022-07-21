@@ -10,9 +10,9 @@
 <body>
     <div class="container">
         
-        <h1 style="padding-top: 30px;"><a href="/">Todo List App</a></h1>
-        <a href="{% url 'add_todo' %}"><button type="button" class="btn btn-info" style="margin-left: 550px;">Add task</button></a>
-        <br>
+        <h1 style="padding-top: 30px;">Todo List App</h1><br>
+        <a href="{% url 'add_todo' %}"><button type="button" class="btn btn-info">Add task</button></a>
+        <br><br>
     
     <div class="list-group">
        
@@ -27,17 +27,27 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ t.todo_title }}</h5>
                   <p class="card-text">{{ t.task_detail|linebreaksbr }}</p>
+                 
                 </div>
                 <div class="card-footer">
                   <small>Completion date: {{ t.completion_date }}</small>
-                 <br>
-                  <small class="text-muted">Done status: {{t.done_status}}</small><br><br>
+                 
+                  <!-- <small class="text-muted">Done status: {{t.done_status}}</small><br><br> -->
+                  
+                  <form method="POST" action="{% url 'completetodo' t.id %}">
+                    {% csrf_token %}
+                
+                  <input type="hidden" id="done_status" name="done_status" value="True">
+                  <button type="submit" class="btn btn-success" style="float: left;">Mark as completed</button>
+                  
+                  </form><br><br>
                   <a href="{% url 'viewtodo' t.id%}"><button type="button" class="btn btn-info" style="float:left">Edit</button></a>
                   <form method="POST" action="{% url 'deletetodo' t.id %}">
                     {% csrf_token %}
                 
                     <button type="submit" class="btn btn-danger" style="float:right">Delete</button>
                 </form>
+                
                 </div>
               </div>
             </div>
@@ -63,7 +73,11 @@
                     <br>
                     <small class="text-muted">Done status: {{t.done_status}}</small><br><br>
                     <a href="{% url 'viewtodo' t.id %}"><button type="button" class="btn btn-info" style="float:left;">Edit</button></a>
-                    <a href="{% url 'deletetodo' t.id%}"><button type="button" class="btn btn-danger" style="float:right">Delete</button></a>
+                    <form method="POST" action="{% url 'deletetodo' t.id %}">
+                      {% csrf_token %}
+                  
+                      <button type="submit" class="btn btn-danger" style="float:right">Delete</button>
+                  </form>
                 </div>
                 </div>
               </div>

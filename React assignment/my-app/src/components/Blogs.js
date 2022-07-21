@@ -37,7 +37,7 @@ const Blogs = () => {
                     <div className="card-body">
                    
                       <h5 className="card-title">{index + 1}. {blog.title}</h5>
-                      <p className="card-text">{blog.description}</p>
+                      <p className="card-text" id="descr">{blog.description}</p>
                       <small>{blog.reading_time} mins read</small>
                     </div>
                   </div>
@@ -51,6 +51,7 @@ const Blogs = () => {
              </div>
         
             }
+            <br />
         </div>
     
     )

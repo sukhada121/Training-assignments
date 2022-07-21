@@ -45,7 +45,7 @@ const subm=(e)=>{
   
    
 
-    return <div className="container"><br /><h3>Add blog</h3>
+    return <div className="container"><br /><h3 id="addSection">Add new blog</h3>
     <form onSubmit={subm}>
       <div className="mb-3">
         <label for="exampleFormControlInput1" className="form-label">Blog title</label>
@@ -66,7 +66,7 @@ const subm=(e)=>{
         <input onChange={(e) => handleSubmit(e)} value={formData.reading_time} type="text" className="form-control" id="reading_time">
       </input>
       </div>
-      <button  type="submit" className="btn btn-info">Add blog</button>
+      <button  type="submit" id="addButton" className="btn btn-info">Add</button>
 
       </form>
     </div>

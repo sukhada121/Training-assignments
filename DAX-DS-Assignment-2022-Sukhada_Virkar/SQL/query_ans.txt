@@ -1,0 +1,39 @@
+--SQL
+/*Topic - Condition + String matching + logical operator*/
+/*Answer 1: */
+SELECT CustomerId, FirstName, LastName, City 
+FROM customers 
+WHERE FirstName like 'N%' OR City='Prague'; 
+
+/*Answer 2:*/
+SELECT TrackId, Name, Composer,UnitPrice
+FROM tracks 
+WHERE (UnitPrice BETWEEN 0 and 1 AND Composer NOT like '%T%');
+
+/*Topic - Group By, Order By */
+/*Answer 1:*/
+SELECT InvoiceDate,sum(Total),avg(Total) 
+FROM invoices 
+WHERE InvoiceDate BETWEEN'2012-06-01 00:00:00' AND '2012-06-30' 
+GROUP BY InvoiceDate;
+
+/*Answer 2:*/
+SELECT TrackId, sum(Quantity) 
+FROM invoice_items 
+GROUP BY TrackId 
+ORDER BY count(TrackId) DESC;
+
+/*Topic - Join/Subqueries */
+
+/*Answer 1:*/
+SELECT ArtistId, Name 
+FROM artists 
+WHERE ArtistId NOT IN (SELECT ArtistId 
+FROM albums 
+JOIN tracks ON albums.AlbumId=tracks.AlbumId 
+JOIN playlist_track ON tracks.TrackId=playlist_track.TrackId);
+
+/*Answer 2:*/
+
+ 
+

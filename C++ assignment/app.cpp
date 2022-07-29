@@ -163,6 +163,25 @@ public:
             cout << endl;
         }
     }
+
+    void fixed_csv(){
+
+        cout << "\nData in Fixed CSV format:\n";
+        vector<vector<string>> result = getData();
+        for (vector<string> vect1D : result)
+        {
+            for (int s = 0; s < vect1D.size(); s++)
+            {
+
+                cout << vect1D[s];
+                if (s != 2)
+                {
+                    cout << ",";
+                }
+                
+            }
+        }
+    }
 };
 
 int main(int argc, char **argv)
@@ -182,6 +201,7 @@ int main(int argc, char **argv)
 
     d1.envelope_format();
     d1.fixed_format();
+    d1.fixed_csv();
 
     return 0;
 }

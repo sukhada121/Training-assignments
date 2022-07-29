@@ -164,7 +164,8 @@ public:
         }
     }
 
-    void fixed_csv(){
+    void fixed_csv()
+    {
 
         cout << "\nData in Fixed CSV format:\n";
         vector<vector<string>> result = getData();
@@ -178,7 +179,6 @@ public:
                 {
                     cout << ",";
                 }
-                
             }
         }
     }
@@ -186,22 +186,35 @@ public:
 
 int main(int argc, char **argv)
 {
-
+    // command to run code: ./app --inputFile sample_input.in --output_format envelope
     string inputFile = " ";
+    string format = " ";
 
     if (argv[1])
     {
-        inputFile = argv[1];
+        inputFile = argv[2];
+    }
+    if (argv[3])
+    {
+        format = argv[4];
     }
 
     PersonData d1;
     d1.initializeFileData(inputFile);
 
     // d1.printData();
-
-    d1.envelope_format();
-    d1.fixed_format();
-    d1.fixed_csv();
+    if (format == "envelope")
+    {
+        d1.envelope_format();
+    }
+    else if (format == "fixed_length")
+    {
+        d1.fixed_format();
+    }
+    else
+    {
+        d1.fixed_csv();
+    }
 
     return 0;
 }

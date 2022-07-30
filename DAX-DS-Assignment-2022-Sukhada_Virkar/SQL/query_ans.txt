@@ -34,6 +34,10 @@ JOIN tracks ON albums.AlbumId=tracks.AlbumId
 JOIN playlist_track ON tracks.TrackId=playlist_track.TrackId);
 
 /*Answer 2:*/
-
+SELECT a.AlbumId, a.Title, count(pt.PlaylistId) as playlist_count
+FROM albums a 
+INNER JOIN Tracks t ON a.AlbumId = t.AlbumId INNER JOIN playlist_track pt ON t.TrackId = pt.trackId 
+GROUP BY a.AlbumId, a.Title 
+HAVING playlist_count > 10 ;
  
 
